@@ -136,13 +136,13 @@ const FAB: React.FC<FABProps> = ({
 
   const animated = useRef(new Animated.Value(visible ? 1 : 0)).current;
 
-  useEffect(() => {
+  /*useEffect(() => {
     Animated.timing(animated, {
       toValue: visible ? 1 : 0,
       duration: 200,
       useNativeDriver: false,
     }).start();
-  }, [visible]);
+  }, [visible]);*/
 
   const getLoadingIndicator = () => {
     if (!loadingIndicator) return <ActivityIndicator color={palette.on} />;
