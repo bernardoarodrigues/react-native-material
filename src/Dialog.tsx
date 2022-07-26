@@ -56,8 +56,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   surface: {
-    width: 280,
-    marginHorizontal: 40,
+    marginHorizontal: 20,
   },
 });
 
