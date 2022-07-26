@@ -21,7 +21,7 @@ const DialogContent: React.FC<DialogContentProps> = ({ children }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingBottom: 20,
     // borderTopWidth: 1,
     // borderBottomWidth: 1,

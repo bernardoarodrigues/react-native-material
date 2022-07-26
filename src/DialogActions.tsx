@@ -14,7 +14,7 @@ const DialogActions: React.FC<DialogActionsProps> = ({ children }) => {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 8,
+    margin: 12,
   },
 });
 
