@@ -7,14 +7,15 @@ import {
   StyleSheet,
   TextStyle,
   View,
-  ViewProps,
   ViewStyle,
 } from 'react-native';
 import Text from './Text';
 import { Color, usePaletteColor } from './hooks/use-palette-color';
 import { useStyles } from './hooks/use-styles';
+import type { PressableProps } from './Pressable';
+import Pressable from './Pressable';
 
-export interface AvatarProps extends Omit<ViewProps, 'hitSlop'>{
+export interface AvatarProps extends Omit<PressableProps, 'style' | 'children'> {
   label?: string | React.ReactElement | ((props: { color: string }) => React.ReactElement | null) | null;
 
   image?: ImageSourcePropType | React.ReactElement | ((props: { size: number }) => React.ReactElement | null) | null;
@@ -60,7 +61,6 @@ const Avatar: React.FC<AvatarProps> = ({
   labelStyle,
   imageStyle,
   onPress,
-  ...rest
 }) => {
   const palette = usePaletteColor(autoColor ? getColor(typeof label === 'string' ? label : '') : color, tintColor);
 
@@ -118,12 +118,12 @@ const Avatar: React.FC<AvatarProps> = ({
   };
 
   return (
-    <View style={[styles.container, style]}>
+    <Pressable style={[styles.container, style]} onPress={onPress}>
       {(label || icon) && (
         <View style={[styles.contentContainer, contentContainerStyle]}>{label ? getLabel() : icon && getIcon()}</View>
       )}
       {image && <View style={[StyleSheet.absoluteFillObject, imageContainerStyle]} onPress={onPress}>{getImage()}</View>}
-    </View>
+    </Pressable>
   );
 };
 
