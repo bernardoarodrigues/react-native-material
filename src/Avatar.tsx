@@ -58,6 +58,7 @@ const Avatar: React.FC<AvatarProps> = ({
   imageContainerStyle,
   labelStyle,
   imageStyle,
+  onPress,
 }) => {
   const palette = usePaletteColor(autoColor ? getColor(typeof label === 'string' ? label : '') : color, tintColor);
 
@@ -117,9 +118,9 @@ const Avatar: React.FC<AvatarProps> = ({
   return (
     <View style={[styles.container, style]}>
       {(label || icon) && (
-        <View style={[styles.contentContainer, contentContainerStyle]}>{label ? getLabel() : icon && getIcon()}</View>
+        <View style={[styles.contentContainer, contentContainerStyle]} onPress={onPress}>{label ? getLabel() : icon && getIcon()}</View>
       )}
-      {image && <View style={[StyleSheet.absoluteFillObject, imageContainerStyle]}>{getImage()}</View>}
+      {image && <View style={[StyleSheet.absoluteFillObject, imageContainerStyle]} onPress={onPress}>{getImage()}</View>}
     </View>
   );
 };
