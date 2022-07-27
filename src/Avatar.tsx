@@ -12,10 +12,8 @@ import {
 import Text from './Text';
 import { Color, usePaletteColor } from './hooks/use-palette-color';
 import { useStyles } from './hooks/use-styles';
-import type { PressableProps } from './Pressable';
-import Pressable from './Pressable';
 
-export interface AvatarProps extends Omit<PressableProps, 'style' | 'children'> {
+export interface AvatarProps {
   label?: string | React.ReactElement | ((props: { color: string }) => React.ReactElement | null) | null;
 
   image?: ImageSourcePropType | React.ReactElement | ((props: { size: number }) => React.ReactElement | null) | null;
@@ -60,7 +58,6 @@ const Avatar: React.FC<AvatarProps> = ({
   imageContainerStyle,
   labelStyle,
   imageStyle,
-  onPress,
 }) => {
   const palette = usePaletteColor(autoColor ? getColor(typeof label === 'string' ? label : '') : color, tintColor);
 
@@ -118,12 +115,12 @@ const Avatar: React.FC<AvatarProps> = ({
   };
 
   return (
-    <Pressable style={[styles.container, style]} onPress={onPress}>
+    <View style={[styles.container, style]}>
       {(label || icon) && (
         <View style={[styles.contentContainer, contentContainerStyle]}>{label ? getLabel() : icon && getIcon()}</View>
       )}
-      {image && <View style={[StyleSheet.absoluteFillObject, imageContainerStyle]} onPress={onPress}>{getImage()}</View>}
-    </Pressable>
+      {image && <View style={[StyleSheet.absoluteFillObject, imageContainerStyle]}>{getImage()}</View>}
+    </View>
   );
 };
 
