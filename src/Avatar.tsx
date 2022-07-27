@@ -41,6 +41,8 @@ export interface AvatarProps {
   labelStyle?: StyleProp<TextStyle>;
 
   imageStyle?: StyleProp<ImageStyle>;
+
+  onPress?: (params: any) => any;
 }
 
 const Avatar: React.FC<AvatarProps> = ({
