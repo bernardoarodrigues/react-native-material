@@ -19,7 +19,7 @@ const Dialog: React.FC<DialogProps> = ({ visible = false, onDismiss, children })
 
     Animated.timing(animatedValue, {
       toValue: visible ? 1 : 0,
-      duration: 225,
+      duration: 400,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: Platform.OS !== 'android',
     }).start(() => {
