@@ -1,15 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Animated, Easing, Platform, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Animated, Easing, Platform, StyleSheet, TouchableWithoutFeedback, ViewProps } from 'react-native';
 import { Portal } from './base/PortalContext';
 import Surface from './Surface';
 
-export interface DialogProps {
+export interface DialogProps extends ViewProps {
   visible?: boolean;
 
   onDismiss?: () => void;
+
+  onLayout?: () => void;
 }
 
-const Dialog: React.FC<DialogProps> = ({ visible = false, onDismiss, children }) => {
+const Dialog: React.FC<DialogProps> = ({ visible = false, onDismiss, onLayout, children }) => {
   const [portalVisible, setPortalVisible] = useState(visible);
 
   const animatedValue = useMemo(() => new Animated.Value(visible ? 1 : 0), []);
@@ -38,6 +40,7 @@ const Dialog: React.FC<DialogProps> = ({ visible = false, onDismiss, children })
         style={[StyleSheet.absoluteFill, styles.container, { opacity: animatedValue }]}
         pointerEvents="box-none"
         needsOffscreenAlphaCompositing={Platform.OS === 'android'}
+        onLayout={onLayout}
       >
         <Surface category="medium" elevation={24} style={[styles.surface]}>
           {children}
